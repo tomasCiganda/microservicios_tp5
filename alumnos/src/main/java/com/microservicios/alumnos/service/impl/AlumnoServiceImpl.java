@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.microservicios.alumnos.dto.AlumnoDto;
+import com.microservicios.alumnos.entity.Alumno;
 import com.microservicios.alumnos.mapper.AlumnoMapper;
 import com.microservicios.alumnos.repository.AlumnoRepository;
 import com.microservicios.alumnos.service.AlumnoService;
@@ -22,32 +23,34 @@ public class AlumnoServiceImpl implements AlumnoService {
 
     @Autowired
     private AlumnoRepository repository;
-    
     @Autowired
     private AlumnoMapper mapper;
 
     @Override
     public AlumnoDto addAlumno(AlumnoDto alumno) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'addAlumno'");
+        try {
+            Alumno alum = mapper.toAlumno(alumno);
+            alum = repository.save(alum);
+            return mapper.toDto(alum);
+        } catch (Exception e) {
+            throw e;
+        }
     }
 
     @Override
-    public AlumnoDto updatAlumno(AlumnoDto alumno) {
+    public AlumnoDto updateAlumno(AlumnoDto alumno) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'updatAlumno'");
     }
 
     @Override
     public AlumnoDto getAlumno(long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getAlumno'");
+        return mapper.toDto(repository.findById(id).get());
     }
 
     @Override
     public List<AlumnoDto> getAlumnos() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getAlumnos'");
+        return mapper.toDtoList(repository.findAll());
     }
 
     @Override

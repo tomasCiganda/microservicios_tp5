@@ -2,9 +2,10 @@ package com.microservicios.alumnos;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 
-
-@SpringBootApplication(scanBasePackages = {"com.microservicios.alumnos.mapper", "com.microservicios.alumnos.controller"})
+@SpringBootApplication(scanBasePackages="com.microservicios.alumnos")
+@EnableFeignClients
 public class AlumnosApplication {
 
     public static void main(String[] args) {

@@ -8,7 +8,7 @@ public interface AlumnoService {
     
     AlumnoDto addAlumno(AlumnoDto alumno);
 
-    AlumnoDto updatAlumno(AlumnoDto alumno);
+    AlumnoDto updateAlumno(AlumnoDto alumno);
 
     AlumnoDto getAlumno(long id);
     
