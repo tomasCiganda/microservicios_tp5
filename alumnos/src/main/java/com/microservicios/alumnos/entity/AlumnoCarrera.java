@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+import org.hibernate.annotations.JoinColumnOrFormula;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -17,23 +19,18 @@ import lombok.Setter;
 @Setter
 @Builder
 @Entity
-@Table(name = "AlumnoCarrera")
+@Table(name = "alumno_carrera")
 public class AlumnoCarrera implements Serializable {
     
     @EmbeddedId
     private AlumnoCarreraPK alumnoCarreraPK;
 
     @ManyToOne
-    @MapsId("idCarrera") // Mapea la clave foránea idCarrera
-    @JoinColumn(name = "idCarrera")
-    private Carrera carrera;
-
-    @ManyToOne
     @MapsId("nroLibreta") // Mapea la clave foránea nroLibreta
-    @JoinColumn(name = "nroLibreta")
+    @JoinColumn(name="alumno_nro_libreta")
     private Alumno alumno;
 
-    @Column(nullable = false)
+    @Column(nullable = false, name="anio_inscripcion")
     private int anioInscripcion;
 
     @Column(nullable = false)

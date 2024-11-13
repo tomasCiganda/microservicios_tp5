@@ -1,5 +1,6 @@
 package com.microservicios.alumnos.repository;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -12,11 +13,15 @@ import com.microservicios.alumnos.entity.Alumno;
 @Repository
 public interface AlumnoRepository extends JpaRepository<Alumno, Long> {
     
-    @Query("SELECT a FROM alumno a WHERE " +
+    @Query(value = "SELECT * FROM alumno a WHERE " +
            "(:nombre IS NULL OR a.nombre = :nombre) AND " +
-           "(:apellido IS NULL OR a.apellido = :apellido) AND " +
-           "(:edad IS NULL OR a.edad = :edad)")
+           "(:apellido IS NULL OR a.apellido = :apellido) AND "+
+           "(:fecha IS NULL OR a.fecha_nacimiento = :fecha) AND " +
+           "(:dni IS NULL OR a.dni = :dni) AND " +
+           "(:genero IS NULL OR a.genero = :genero)" , nativeQuery=true)
     List<Alumno> findByFilters(@Param("nombre") String nombre, 
-                               @Param("apellido") String apellido, 
-                               @Param("edad") Integer edad);
+                               @Param("apellido") String apellido,
+                               @Param("fecha") Date fechaNacimiento,
+                               @Param("dni") Integer dni,
+                               @Param("genero") String genero);
 }

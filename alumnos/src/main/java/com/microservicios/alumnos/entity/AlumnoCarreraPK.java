@@ -8,19 +8,20 @@ import java.util.Objects;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
-@Setter
-@Builder
+@Data
 @Embeddable
 public class AlumnoCarreraPK implements Serializable{
 
-    private Integer nroLibreta;
+    @Column(name = "alumno_nro_libreta")
+    private Long nroLibreta;
+    @Column(name = "id_carrera")
     private Integer idCarrera;
 
     // Equals y HashCode

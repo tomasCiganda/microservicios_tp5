@@ -9,10 +9,11 @@ import com.microservicios.alumnos.entity.Alumno;
 
 @Mapper(componentModel = "spring")
 public interface AlumnoMapper {
+    
     AlumnoDto toDto(Alumno alumno);
     List<AlumnoDto> toDtoList(List<Alumno> alumnos);
 
-    Alumno toAlumno(AlumnoDto alumnoDto);
+    Alumno toEntity(AlumnoDto alumnoDto);
 
     
 }
